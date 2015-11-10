@@ -1,0 +1,67 @@
+<% provide(:title, @microposts.title) %>
+<ul>
+    <span class="user">
+       <h3><%= link_to @microposts.title, @microposts %></h3>
+    </span>
+</ul>
+
+<ul class="users">
+    <li id="micropost-<%= @microposts.id %>">
+    <span class="user">
+       By <%= link_to @microposts.user.name, @microposts.user %>
+    </span>
+    <br>
+  <span class="timestamp">  
+   <hr>
+   Posted <%= time_ago_in_words(@microposts.created_at) %> ago.
+  </span>
+</li>
+</ul>
+<ul>
+    <span class="content">
+     <br>
+      <h4><%= @microposts.content %></h4>
+     <br>
+     <%= image_tag @microposts.picture.url if @microposts.picture? %>
+
+     <hr>
+    </span>
+</ul>
+<div class="row">
+    <% if @microposts.comments.any? %>
+      <h3>Comments (<%= @microposts.comments.count %>)</h3>      
+    <% end %>
+</div>
+
+<div class="row">
+      <%= form_for @comment, :url => micropost_comments_path(@microposts)  do |f| %>
+       <%= render 'shared/error_messages', object: f.object %>
+        <div class="field">
+         <%= f.text_area :content, placeholder: "Compose new comments..." %>
+        </div>
+        <%= f.submit "Post", class: "btn btn-primary" %>
+  
+      <% end %>
+</div>
+<hr>
+
+<ul class="users">
+  <% @comments.each do |comment| %>
+     <li id="comment-<%= comment.id %>">
+     <%= link_to avatar_url(comment.user,80), comment.user %>
+    <span class="user">
+       <%= link_to comment.user.name, comment.user %>
+       <%= comment.created_at %>
+    </span>
+    <br>
+    <span class="content">
+     <br>
+     <%= comment.content %>
+    </span>
+</li>
+  <% end %>
+</ul>
+
+
+
+
