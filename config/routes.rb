@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'signup'  => 'users#new'
    
   get 'static' => 'static_pages#home'
-  #root 'static_pages#home'
+  
   root 'microposts#index'
   get 'post' => 'microposts#index'
   
