@@ -24,7 +24,9 @@ Things you may want to cover:
 * ...
 *DaoHongThuan
 *hoangthetoan
-
+*Nguyen Truong Thanh
+*HoangTheToan
+*Hai 
 
 
 Please feel free to use a different markup language if you do not plan to run
